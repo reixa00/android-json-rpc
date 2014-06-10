@@ -8,7 +8,7 @@ Fork of the original project and modified to handle server side implemented erro
 > Why I did the fork:
 > 
 > When you get a server side error between -32000 and -32099 the library returned a JSONRPCException and the message got lost.
-> Those server side implementd error codes are tated on the [JSON-RPC 2.0 Specification site][1]
+> Those server side implemented error codes are stated on the [JSON-RPC 2.0 Specification site][1]
 
 Actual output:
 
