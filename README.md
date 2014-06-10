@@ -25,7 +25,7 @@ Actual output:
 Based on
 --------
 
-android-json-rpc-0.3.4
+[android-json-rpc-0.3.4][2]
 
 License
 ----
@@ -55,3 +55,4 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 **Free Software, Hell Yeah!**
 
 [1]:http://www.jsonrpc.org/specification#error_object
+[2]:https://code.google.com/p/android-json-rpc/
