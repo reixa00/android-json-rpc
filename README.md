@@ -20,7 +20,22 @@ Actual output:
 }
 ```
 
+Login example
 
+```java
+// Create client specifying JSON-RPC version 2.0
+JSONRPCClient client = JSONRPCClient.create("http://service/uri", JSONRPCParams.Versions.VERSION_2);
+client.setConnectionTimeout(2000);
+client.setSoTimeout(2000);
+try {
+  JSONObject jsonObj = new JSONObject();
+  jsonObj.put("user", "myuser");
+  jsonObj.put("password", "mypassword");
+  String string = client.callJSONObject("login", jsonObj);
+} catch (JSONRPCException e) {
+  e.printStackTrace();
+}
+```
 
 Based on
 --------
