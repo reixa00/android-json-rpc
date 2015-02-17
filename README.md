@@ -31,7 +31,7 @@ try {
   JSONObject jsonObj = new JSONObject();
   jsonObj.put("user", "myuser");
   jsonObj.put("password", "mypassword");
-  String string = client.callJSONObject("login", jsonObj);
+  JSONObject responseObj = client.callJSONObject("login", jsonObj);
 } catch (JSONRPCException e) {
   e.printStackTrace();
 }
