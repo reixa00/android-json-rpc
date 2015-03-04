@@ -1,1 +1,1 @@
-{"jsonrpc": "2.0", "result": "Everything is fine", "id": 1}
+{"jsonrpc": "2.0", "result": {"message": "Everything went fine"}, "id": 1}
