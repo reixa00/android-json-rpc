@@ -1,8 +1,6 @@
 android-json-rpc
 =========
 
-Android.
-
 Fork of the original project and modified to handle server side implemented errors.
 
 > Why I did the fork:
