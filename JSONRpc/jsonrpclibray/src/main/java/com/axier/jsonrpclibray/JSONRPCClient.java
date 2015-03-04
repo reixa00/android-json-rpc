@@ -108,38 +108,6 @@ public abstract class JSONRPCClient {
 	
 	protected int soTimeout = 0, connectionTimeout = 0;
 	
-	
-	
-//	public Object beginCall(String method, final Object ... params)
-//	{
-//		//Handler 
-//		class RequestThread extends Thread {
-//			String mMethod;
-//			Object[] mParams;
-//			public RequestThread(String method, Object[] params)
-//			{
-//				mMethod = method;
-//				mParams = params;
-//			}
-//			@Override
-//			public void run() {
-//				try
-//				{
-//					doRequest(mMethod, mParams);
-//				}
-//				catch (JSONRPCException e)
-//				{
-//					
-//				}
-//			}
-//			
-//		};
-//		RequestThread requestThread = new RequestThread(method, params);
-//		requestThread.start();
-//		
-//		return null;
-//	}
-	
 	/**
 	 * Get the socket operation timeout in milliseconds
 	 */
@@ -220,10 +188,7 @@ public abstract class JSONRPCClient {
 		try 
 		{
 			return doRequest(method, params).getString("result");
-		} catch (JSONRPCException e)
-		{
-			throw new JSONRPCException("Cannot convert result to String", e);
-		} catch (JSONException e) {
+		} catch (JSONRPCException | JSONException e) {
 			throw new JSONRPCException("Cannot convert result to String", e);
 		}
 	}
@@ -238,11 +203,7 @@ public abstract class JSONRPCClient {
 	 */	public String callString(String method, JSONObject params) throws JSONRPCException {
 		try{
 			return doRequest(method, params).getString("result");
-		} catch (JSONException e) {
-			throw new JSONRPCException("Cannot convert result to String", e);
-		} catch (JSONRPCException e) {
-			throw new JSONRPCException("Cannot convert result to String", e);
-		} catch (Exception e) {
+		} catch (JSONException | JSONRPCException e) {
 			throw new JSONRPCException("Cannot convert result to String", e);
 		}
 	}
@@ -265,9 +226,7 @@ public abstract class JSONRPCClient {
 		} catch (JSONException e) {
 			try{
 				return Integer.parseInt(response.getString("result"));
-			} catch(NumberFormatException e1){
-				throw new JSONRPCException("Cannot convert result to int", e1);
-			} catch (JSONException e1){ 
+			} catch(NumberFormatException | JSONException e1){
 				throw new JSONRPCException("Cannot convert result to int", e1);
 			}
 		}
@@ -289,9 +248,7 @@ public abstract class JSONRPCClient {
 		} catch (JSONException e) {
 			try{
 				return Integer.parseInt(response.getString("result"));
-			} catch(NumberFormatException e1){
-				throw new JSONRPCException("Cannot convert result to int", e1);
-			} catch (JSONException e1){ 
+			} catch(NumberFormatException | JSONException e1){
 				throw new JSONRPCException("Cannot convert result to int", e1);
 			}
 		}
@@ -317,9 +274,7 @@ public abstract class JSONRPCClient {
 		{
 			try {
 				return Long.parseLong(response.getString("result"));
-			} catch (NumberFormatException e1) {
-				throw new JSONRPCException("Cannot convert result to long", e);
-			} catch (JSONException e1) {
+			} catch (NumberFormatException | JSONException e1) {
 				throw new JSONRPCException("Cannot convert result to long", e);
 			}
 		}
@@ -345,9 +300,7 @@ public abstract class JSONRPCClient {
 		{
 			try {
 				return Long.parseLong(response.getString("result"));
-			} catch (NumberFormatException e1) {
-				throw new JSONRPCException("Cannot convert result to long", e);
-			} catch (JSONException e1) {
+			} catch (NumberFormatException | JSONException e1) {
 				throw new JSONRPCException("Cannot convert result to long", e);
 			}
 			
@@ -375,9 +328,7 @@ public abstract class JSONRPCClient {
 		{
 			try {
 				return Boolean.parseBoolean(response.getString("result"));
-			} catch (NumberFormatException e1) {
-				throw new JSONRPCException("Cannot convert result to boolean", e1);
-			} catch (JSONException e1) {
+			} catch (NumberFormatException | JSONException e1) {
 				throw new JSONRPCException("Cannot convert result to boolean", e1);
 			}
 			
@@ -404,9 +355,7 @@ public abstract class JSONRPCClient {
 		{
 			try {
 				return Boolean.parseBoolean(response.getString("result"));
-			} catch (NumberFormatException e1) {
-				throw new JSONRPCException("Cannot convert result to boolean", e);
-			} catch (JSONException e1) {
+			} catch (NumberFormatException | JSONException e1) {
 				throw new JSONRPCException("Cannot convert result to boolean", e);
 			}
 			
@@ -434,9 +383,7 @@ public abstract class JSONRPCClient {
 		{
 			try {
 				return Double.parseDouble(response.getString("result"));
-			} catch (NumberFormatException e1) {
-				throw new JSONRPCException("Cannot convert result to double", e);
-			} catch (JSONException e1) {
+			} catch (NumberFormatException | JSONException e1) {
 				throw new JSONRPCException("Cannot convert result to double", e);
 			}
 			
@@ -463,9 +410,7 @@ public abstract class JSONRPCClient {
 		{
 			try {
 				return Double.parseDouble(response.getString("result"));
-			} catch (NumberFormatException e1) {
-				throw new JSONRPCException("Cannot convert result to double", e);
-			} catch (JSONException e1) {
+			} catch (NumberFormatException | JSONException e1) {
 				throw new JSONRPCException("Cannot convert result to double", e);
 			}
 			
@@ -497,9 +442,7 @@ public abstract class JSONRPCClient {
                     return new JSONObject(response.getString("error"));
                 }
 
-            } catch (NumberFormatException e1) {
-                throw new JSONRPCException("Cannot convert result to JSONObject", e);
-            } catch (JSONException e1) {
+            } catch (NumberFormatException | JSONException e1) {
                 throw new JSONRPCException("Cannot convert result to JSONObject", e);
             }
 		}
@@ -531,9 +474,7 @@ public abstract class JSONRPCClient {
                     return new JSONObject(response.getString("error"));
                 }
 
-            } catch (NumberFormatException e1) {
-                throw new JSONRPCException("Cannot convert result to JSONObject", e);
-            } catch (JSONException e1) {
+            } catch (NumberFormatException | JSONException e1) {
                 throw new JSONRPCException("Cannot convert result to JSONObject", e);
             }
 		}
@@ -560,9 +501,7 @@ public abstract class JSONRPCClient {
 		{
 			try {
 				return new JSONArray(response.getString("result"));
-			} catch (NumberFormatException e1) {
-				throw new JSONRPCException("Cannot convert result to JSONArray", e);
-			} catch (JSONException e1) {
+			} catch (NumberFormatException | JSONException e1) {
 				throw new JSONRPCException("Cannot convert result to JSONArray", e);
 			}
 		}
@@ -588,9 +527,7 @@ public abstract class JSONRPCClient {
 		{
 			try {
 				return new JSONArray(response.getString("result"));
-			} catch (NumberFormatException e1) {
-				throw new JSONRPCException("Cannot convert result to JSONArray", e);
-			} catch (JSONException e1) {
+			} catch (NumberFormatException | JSONException e1) {
 				throw new JSONRPCException("Cannot convert result to JSONArray", e);
 			}
 		}
