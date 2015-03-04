@@ -1,5 +1,1 @@
-{
-    "data":{},
-    "message":"Callback Service RPC Error code",
-    "code":-32014
-}
+{"jsonrpc": "2.0", "result": 19, "id": 1}
