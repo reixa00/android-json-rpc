@@ -10,30 +10,46 @@ Fork of the original project and modified to handle server side implemented erro
 > When you get a server side error between -32000 and -32099 the library returned a JSONRPCException and the message got lost.
 > Those server side implemented error codes are stated on the [JSON-RPC 2.0 Specification site][1]
 
-Actual output:
+Actual [error][4] output:
 
 ```
 {
-    "data":{}, //Optional from server-side
-    "message":"Callback Service RPC Error code",
-    "code":-32014
+    jsonrpc: "2.0",
+    error: {
+        code: -32014,
+        message: "Method not found"
+    },
+    id: "1"
+}
+```
+
+Actual [success][5] output:
+
+```
+{
+    jsonrpc: "2.0",
+    result: {
+        message: "Everything went fine"
+    },
+    id: 1
 }
 ```
 
 Login example
 
 ```java
-// Create client specifying JSON-RPC version 2.0
-JSONRPCClient client = JSONRPCClient.create("http://service/uri", JSONRPCParams.Versions.VERSION_2);
+JSONRPCClient client = JSONRPCClient.create(URL, JSONRPCParams.Versions.VERSION_2);
 client.setConnectionTimeout(2000);
 client.setSoTimeout(2000);
 try {
-  JSONObject jsonObj = new JSONObject();
-  jsonObj.put("user", "myuser");
-  jsonObj.put("password", "mypassword");
-  JSONObject responseObj = client.callJSONObject("login", jsonObj);
-} catch (JSONRPCException e) {
-  e.printStackTrace();
+    JSONObject jsonObj = new JSONObject();
+    jsonObj.put(EXAMPLE_PARAM_1, "myuser");
+    jsonObj.put(EXAMPLE_PARAM_2, "mypassword");
+    return client.callJSONObject(EXAMPLE_METHOD_NAME, jsonObj);
+} catch (JSONRPCException rpcEx) {
+    rpcEx.printStackTrace();
+} catch (JSONException jsEx) {
+    jsEx.printStackTrace();
 }
 ```
 
@@ -71,3 +87,5 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 [1]:http://www.jsonrpc.org/specification#error_object
 [2]:https://code.google.com/p/android-json-rpc/
+[4]:https://raw.githubusercontent.com/axierjhtjz/android-json-rpc/master/error.json
+[5]:https://raw.githubusercontent.com/axierjhtjz/android-json-rpc/master/success.json
