@@ -490,13 +490,18 @@ public abstract class JSONRPCClient {
 		} 
 		catch (JSONException e)
 		{
-			try {
-				return new JSONObject(response.getString("result"));
-			} catch (NumberFormatException e1) {
-				throw new JSONRPCException("Cannot convert result to JSONObject", e);
-			} catch (JSONException e1) {
-				throw new JSONRPCException("Cannot convert result to JSONObject", e);
-			}
+            try {
+                if (response.has("result")) {
+                    return new JSONObject(response.getString("result"));
+                } else{
+                    return new JSONObject(response.getString("error"));
+                }
+
+            } catch (NumberFormatException e1) {
+                throw new JSONRPCException("Cannot convert result to JSONObject", e);
+            } catch (JSONException e1) {
+                throw new JSONRPCException("Cannot convert result to JSONObject", e);
+            }
 		}
 	}
 	
@@ -519,13 +524,18 @@ public abstract class JSONRPCClient {
 		} 
 		catch (JSONException e)
 		{
-			try {
-				return new JSONObject(response.getString("result"));
-			} catch (NumberFormatException e1) {
-				throw new JSONRPCException("Cannot convert result to JSONObject", e);
-			} catch (JSONException e1) {
-				throw new JSONRPCException("Cannot convert result to JSONObject", e);
-			}
+            try {
+                if (response.has("result")) {
+                    return new JSONObject(response.getString("result"));
+                } else{
+                    return new JSONObject(response.getString("error"));
+                }
+
+            } catch (NumberFormatException e1) {
+                throw new JSONRPCException("Cannot convert result to JSONObject", e);
+            } catch (JSONException e1) {
+                throw new JSONRPCException("Cannot convert result to JSONObject", e);
+            }
 		}
 	}
 	

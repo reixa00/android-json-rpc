@@ -46,8 +46,8 @@ public class JSONRPCHttpClient extends JSONRPCClient
 	 * @param uri
 	 *            uri of the service
 	 */
-	public JSONRPCHttpClient(HttpClient cleint, String uri){
-		httpClient = cleint;
+	public JSONRPCHttpClient(HttpClient client, String uri){
+		httpClient = client;
 		serviceUri = uri;
 	}
 	
@@ -114,8 +114,14 @@ public class JSONRPCHttpClient extends JSONRPCClient
 			if (jsonResponse.has("error"))
 			{
 				Object jsonError = jsonResponse.get("error");
-				if (!jsonError.equals(null))
-					throw new JSONRPCException(jsonResponse.get("error"));
+                if (!jsonError.equals(null)) {
+                    JSONObject errorObj = jsonResponse.getJSONObject("error");
+                    int code = errorObj.getInt("code");
+                    if (code >= -32099 && code <= -32000)
+                        return jsonResponse;
+                    else
+                        throw new JSONRPCException(jsonResponse.get("error"));
+                }
 				return jsonResponse; // JSON-RPC 1.0
 			}
 			else
