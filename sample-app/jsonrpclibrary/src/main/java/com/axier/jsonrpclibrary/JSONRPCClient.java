@@ -81,6 +81,9 @@ public abstract class JSONRPCClient {
 		JSONObject jsonRequest = new JSONObject();
 		try 
 		{
+			if(this.version == JSONRPCParams.Versions.VERSION_2) {
+				jsonRequest.put("jsonrpc", "2.0");			
+			}
 			jsonRequest.put("id", UUID.randomUUID().hashCode());
 			jsonRequest.put("method", method);
 			jsonRequest.put("params", jsonParams);
@@ -96,10 +99,12 @@ public abstract class JSONRPCClient {
 		
 		JSONObject jsonRequest = new JSONObject();
 		try{
+			if(this.version == JSONRPCParams.Versions.VERSION_2) {
+				jsonRequest.put("jsonrpc", "2.0");			
+			}
 			jsonRequest.put("id", UUID.randomUUID().hashCode());
 			jsonRequest.put("method", method);
 			jsonRequest.put("params", params);
-			jsonRequest.put("jsonrpc", "2.0");
 		} catch (JSONException e1) {
 			throw new JSONRPCException("Invalid JSON request", e1);
 		}
