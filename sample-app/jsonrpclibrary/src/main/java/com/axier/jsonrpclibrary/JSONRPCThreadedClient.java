@@ -125,6 +125,9 @@ public abstract class JSONRPCThreadedClient {
 		JSONObject jsonRequest = new JSONObject();
 		try 
 		{
+			if(this.version == JSONRPCParams.Versions.VERSION_2) {
+				jsonRequest.put("jsonrpc", "2.0");			
+			}
 			jsonRequest.put("id", UUID.randomUUID().hashCode());
 			jsonRequest.put("method", method);
 			jsonRequest.put("params", jsonParams);
@@ -140,6 +143,9 @@ public abstract class JSONRPCThreadedClient {
 		
 		JSONObject jsonRequest = new JSONObject();
 		try{
+			if(this.version == JSONRPCParams.Versions.VERSION_2) {
+				jsonRequest.put("jsonrpc", "2.0");			
+			}
 			jsonRequest.put("id", UUID.randomUUID().hashCode());
 			jsonRequest.put("method", method);
 			jsonRequest.put("params", params);
